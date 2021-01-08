@@ -1,0 +1,30 @@
+.row {
+    width: 75%;
+    margin: auto;
+    display: flex;
+  }
+  
+.column {
+    flex: auto;
+    padding: 5px;
+    position: relative;
+}
+
+.image{
+    width: 100%;
+    position: absolute;
+    margin: 10px;
+
+}
+
+.check{
+    position: absolute;
+    width: 20%;
+    margin: 10px;
+}
+
+.hide{
+    display: None;
+}
+
+  /*https://www.svgrepo.com/svg/207969/door-doorway*/
