@@ -8,19 +8,15 @@
     flex: auto;
     padding: 5px;
     position: relative;
-    min-height: fit-content;
-}
 }
 
 .image{
     width: 100%;
-    margin: 10px;
-    position: absolute;
 }
 
 .check{
     width: 15%;
-    margin: auto;
+    margin-left: 20%;
     position: absolute;
 }
 
