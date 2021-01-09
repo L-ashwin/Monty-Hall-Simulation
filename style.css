@@ -2,25 +2,26 @@
     width: 75%;
     margin: auto;
     display: flex;
-  }
+}
   
 .column {
     flex: auto;
     padding: 5px;
     position: relative;
+    min-height: fit-content;
+}
 }
 
 .image{
     width: 100%;
-    position: absolute;
     margin: 10px;
-
+    position: absolute;
 }
 
 .check{
+    width: 15%;
+    margin: auto;
     position: absolute;
-    width: 20%;
-    margin: 10px;
 }
 
 .hide{
