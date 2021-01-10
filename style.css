@@ -1,22 +1,25 @@
 .row {
-    width: 75%;
+    width: 50%;
     margin: auto;
     display: flex;
 }
   
 .column {
     flex: auto;
-    padding: 5px;
     position: relative;
+    margin: 10px;
 }
 
 .image{
     width: 100%;
 }
 
+.column button {
+    width: 100%;
+}
+
 .check{
-    width: 15%;
-    margin-left: 20%;
+    width: 100%;
     position: absolute;
 }
 
