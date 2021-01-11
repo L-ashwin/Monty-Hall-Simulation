@@ -5,9 +5,9 @@
 }
   
 .column {
-    flex: auto;
+    flex: 33.33%;
     position: relative;
-    margin: 10px;
+    margin: 5px;
 }
 
 .image{
