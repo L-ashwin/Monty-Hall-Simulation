@@ -49,16 +49,66 @@ function select(auto) {
         options[choosen].querySelector('.check').classList.add('hide')
         container.querySelector('.check').classList.remove('hide')
 
+        var win = state[secondChoice] == 1
+        if (choosen == secondChoice){
+            count_stayPut += 1
+            stayPut += win
+        } else{
+            count_switchOp += 1
+            switchOp += win
+        }
+
+        op1.innerHTML = String(stayPut)+' \\ '+ String(count_stayPut);
+        op2.innerHTML = String(switchOp)+' \\ '+ String(count_switchOp);
+        op3.innerHTML = String(count_stayPut)+' \\ '+ String(count_switchOp);
+
     }
 
 }
 
+function reset() {
+    state  = new Array(3).fill(0)
+    state[Math.floor(Math.random()*3)] = 1
+    choosen = -1
+
+    options.forEach(option => {
+
+        option.addEventListener('click', select)
+        
+        for (let index = 0; index < option.children.length; index++) {
+            const child = option.children[index];
+            if(!child.classList.contains('hide')){
+                child.classList.add('hide')
+            }
+        }
+        
+        option.querySelector('.door').classList.remove('hide')        
+
+    });
+}
+
+var code = ['neg', 'pos']
+var stayPut  = 0
+var switchOp = 0
+var count_stayPut  = 0
+var count_switchOp = 0
+
 var state  = new Array(3).fill(0)
 state[Math.floor(Math.random()*3)] = 1
 //console.log(state)
-var code = ['neg', 'pos']
 var choosen = -1
 
 options.forEach(option => {
     option.addEventListener('click', select)
 });
+
+document.getElementById('reset').addEventListener('click', reset)
+
+var op1 = document.getElementById('Out1')
+var op2 = document.getElementById('Out2')
+var op3 = document.getElementById('Out3')
+
+op1.innerHTML = stayPut;
+op2.innerHTML = switchOp;
+op3.innerHTML = String(count_stayPut)+' \\ '+ String(count_switchOp);
+

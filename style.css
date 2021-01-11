@@ -14,8 +14,10 @@
     width: 100%;
 }
 
-.column button {
+.row button {
+    font-size: medium;
     width: 100%;
+    margin: auto;
 }
 
 .check{
@@ -25,6 +27,11 @@
 
 .hide{
     display: None;
+}
+
+.scores .column p{
+    text-align: center;
+
 }
 
   /*https://freesvg.org/*/
