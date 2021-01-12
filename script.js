@@ -75,7 +75,7 @@ function reset() {
     options.forEach(option => {
 
         option.addEventListener('click', select)
-        option.addEventListener('touchstart', select, true)
+        option.addEventListener('touchstart', select, false)
         
         for (let index = 0; index < option.children.length; index++) {
             const child = option.children[index];
@@ -102,11 +102,11 @@ var choosen = -1
 
 options.forEach(option => {
     option.addEventListener('click', select)
-    option.addEventListener('touchstart', select, true)
+    option.addEventListener('touchstart', select, false)
 });
 
 document.getElementById('reset').addEventListener('click', reset)
-document.getElementById('reset').addEventListener('touchstart', reset, true)
+document.getElementById('reset').addEventListener('touchstart', reset, false)
 
 var op1 = document.getElementById('Out1')
 var op2 = document.getElementById('Out2')
