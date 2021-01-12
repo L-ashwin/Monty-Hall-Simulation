@@ -38,7 +38,6 @@ function select(auto) {
     } else {
         options.forEach(option => {
             option.removeEventListener('click', select)
-            option.removeEventListener('touchstart', select)
             
             if (!option.querySelector('.door').classList.contains('hide')){
                 option.querySelector('.door').classList.add('hide')
@@ -75,7 +74,6 @@ function reset() {
     options.forEach(option => {
 
         option.addEventListener('click', select)
-        option.addEventListener('touchstart', select, false)
         
         for (let index = 0; index < option.children.length; index++) {
             const child = option.children[index];
@@ -102,11 +100,9 @@ var choosen = -1
 
 options.forEach(option => {
     option.addEventListener('click', select)
-    option.addEventListener('touchstart', select, false)
 });
 
 document.getElementById('reset').addEventListener('click', reset)
-document.getElementById('reset').addEventListener('touchstart', reset, false)
 
 var op1 = document.getElementById('Out1')
 var op2 = document.getElementById('Out2')
