@@ -10,16 +10,16 @@ body {
 
     }
     .main {
-        margin-top: 10vh;
-        margin-bottom: 10vh;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
     }
 
     .h1{
         text-align: center;
         font-size:x-large;
         font-family:'Courier New', Courier, monospace;
-        margin-bottom: 10vh;
-        margin-top: 10vh;
+        margin-bottom: 5vh;
+        margin-top: 5vh;
     }
 }
 
@@ -34,7 +34,8 @@ body {
 
     .h1{
         text-align: center;
-        margin-top: 5%;
+        font-family:'Courier New', Courier, monospace;
+        margin-top: 2%;
         margin-bottom: 5%;
     }
 
@@ -79,6 +80,25 @@ body {
 .scores .column p{
     text-align: center;
 
+}
+
+
+#readme-text{
+    margin-top: 2vh;
+}
+
+#readme{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: larger;
+}
+
+#footer {
+    position: absolute;
+    font-size: larger;
+    bottom: 10px;
+    right: 10px;
 }
 
   /*https://freesvg.org/*/

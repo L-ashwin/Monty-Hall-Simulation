@@ -112,3 +112,23 @@ op1.innerHTML = stayPut;
 op2.innerHTML = switchOp;
 op3.innerHTML = String(count_stayPut)+' \\ '+ String(count_switchOp);
 
+
+
+// -------------------------- For discription -------------------------------
+var readmeText = document.getElementById('readme-text')
+var readme = document.getElementById('readme')
+var footer = document.getElementById('footer')
+
+readme.addEventListener('click', toggle)
+readmeText.addEventListener('click',toggle, false)
+function toggle(params) {
+    if (readmeText.classList.contains('hide')){
+        readmeText.classList.remove('hide')
+        readme.classList.add('hide')
+        footer.classList.add('hide')
+    }else{
+        readmeText.classList.add('hide')
+        readme.classList.remove('hide')
+        footer.classList.remove('hide')
+    }
+}
