@@ -1,5 +1,6 @@
 body {
-    background-color:#587AA6;
+    background-color:#0d1117;
+    color: #58a6ff;
 }
 
 @media screen and (orientation:portrait){
@@ -21,11 +22,14 @@ body {
         margin-bottom: 5vh;
         margin-top: 5vh;
     }
+    .row button {
+        height: 5vh;
+    }
 }
 
 @media screen and (orientation:landscape) { 
     .row {
-        width: 50%;
+        width: 40%;
         margin: auto;
         display: flex;
         margin-bottom: 2vh;
@@ -48,6 +52,10 @@ body {
         margin-top: 0px !important ;
         margin-bottom: 0px !important ;
     }
+
+    .row button {
+        height: 5vh;
+    }
  }
   
 .column {
@@ -61,11 +69,21 @@ body {
 }
 
 .row button {
+    appearance: none;
+    border: none; 
     font-size: medium;
-    width: 100%;
+    width: 25%;
     margin: auto;
     margin-bottom: 2vh;
     margin-top: 2vh;
+    background-color: #21262d;
+    color: #f0f6fc;
+    font-size: larger;
+    border: 0px;
+}
+
+.row button:focus{
+    outline: 0;
 }
 
 .check{
@@ -84,6 +102,7 @@ body {
 
 
 #readme-text{
+    color: #c9d1d9;
     margin-top: 2vh;
 }
 
@@ -91,7 +110,8 @@ body {
     position: absolute;
     bottom: 10px;
     left: 10px;
-    font-size: larger;
+    font-size: large;
+    color: #c9d1d9;
 }
 
 #footer {
