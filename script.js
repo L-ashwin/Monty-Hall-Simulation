@@ -4,6 +4,46 @@ var options = [
     document.getElementById('02')
 ]
 
+class MontyHall{
+    constrctor(){
+        this.states = new Array(3).fill(0)
+        states[Math.floor(Math.random()*3)] = 1
+        
+        this.choices = [0,1,2]
+        this.firstChoice  = -1
+        this.secondChoice = -1
+    }
+
+    processChoice(container){
+        // only if door is not open selection is allowed
+        if (container.querySelector('.door').classList.contains('hide')){return 0}
+
+        
+        if (this.firstChoice == -1){
+            // if current choice is first choice i.e. firstchoice is not made
+
+            this.firstChoice = parseInt(container.id) //assign first choice
+            container.querySelector('.check').classList.remove('hide') // maek first choise on screen
+            this.choices.splice(this.choices.indexOf(this.firstChoice), 1) // remove the choice from choices avaiable to Monty
+
+            //------------------Monty's move--------------
+
+            if (this.states[this.firstChoice] == 1){ 
+                // If participant has choosen the only door with a car -> monty will pick one of remaining two 
+
+            } else { 
+                // if participant has choosen eiher of the door with a sheep -> monty will pick remaining door with a sheep
+
+            }
+        } else {
+            // if current choise is second choice i.e. wether to stay put or switch 
+
+        }
+    }
+}
+
+
+
 function select(auto) {
     var container = auto.path[1] // grab the image container
     
@@ -13,8 +53,8 @@ function select(auto) {
     // First attempt
     if (choosen == -1){
         choosen = parseInt(container.id)
-        container.querySelector('.check').classList.remove('hide')
 
+        container.querySelector('.check').classList.remove('hide')
         var ele_list = [0,1,2]
         ele_list.splice(ele_list.indexOf(choosen), 1)
         
