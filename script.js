@@ -1,49 +1,189 @@
-var options = [
-    document.getElementById('00'),
-    document.getElementById('01'),
-    document.getElementById('02')
-]
-
 class MontyHall{
-    constrctor(){
-        this.states = new Array(3).fill(0)
-        states[Math.floor(Math.random()*3)] = 1
+    constructor(hi){
+        this.states = new Array(3).fill(0);
+        this.states[Math.floor(Math.random()*3)] = 1;
         
-        this.choices = [0,1,2]
-        this.firstChoice  = -1
-        this.secondChoice = -1
+        this.choices = [0,1,2];
+        this.firstChoice  = -1;
+        this.secondChoice = -1;
     }
 
     processChoice(container){
         // only if door is not open selection is allowed
         if (container.querySelector('.door').classList.contains('hide')){return 0}
 
-        
+            // ------------------------------ First Choice --------------------------------------
         if (this.firstChoice == -1){
             // if current choice is first choice i.e. firstchoice is not made
 
-            this.firstChoice = parseInt(container.id) //assign first choice
-            container.querySelector('.check').classList.remove('hide') // maek first choise on screen
+            this.firstChoice = parseInt(container.id) //assign the first choice
+            container.querySelector('.check').classList.remove('hide') // mark first choise on screen
             this.choices.splice(this.choices.indexOf(this.firstChoice), 1) // remove the choice from choices avaiable to Monty
 
             //------------------Monty's move--------------
-
-            if (this.states[this.firstChoice] == 1){ 
-                // If participant has choosen the only door with a car -> monty will pick one of remaining two 
-
-            } else { 
-                // if participant has choosen eiher of the door with a sheep -> monty will pick remaining door with a sheep
-
+            if (this.states[this.firstChoice]==1){
+                // when first choice is a door with a Car, Monty will open one of the remaining two doors
+                
+                const which = this.choices[Math.round(Math.random())] // Monty's random choice
+                OPTIONS[which].querySelector('.door').classList.add('hide')  // hide door
+                OPTIONS[which].querySelector('.neg').classList.remove('hide') // show sheep behind
+                this.choices.splice(this.choices.indexOf(which), 1) // remove the door which got opened
+            
+            } else {
+                // when first choice is a door with a sheep, Monty will have to open other door with a sheep
+                
+                this.choices.forEach(each => {
+                    if (this.states[each] != 1){
+                        OPTIONS[each].querySelector('.door').classList.add('hide')
+                        OPTIONS[each].querySelector('.neg').classList.remove('hide')
+                        this.choices.splice(this.choices.indexOf(each), 1) // remove the door which got opened
+                    }
+                });
             }
+            return 0
+        
+            // ------------------------------- Second Choice -----------------------------------------
         } else {
             // if current choise is second choice i.e. wether to stay put or switch 
+            this.secondChoice = parseInt(container.id) //assign the second choice
+
+            OPTIONS[this.firstChoice].querySelector('.check').classList.add('hide') 
+            container.querySelector('.check').classList.remove('hide') // mark second choise on screen
+
+            // defaut actions -> rhide all doors & show states
+            OPTIONS.forEach(option => {
+                if (!option.querySelector('.door').classList.contains('hide')){
+                    option.querySelector('.door').classList.add('hide')
+                    option.querySelector(['.neg', '.pos'][this.states[parseInt(option.id)]]).classList.remove('hide')
+                }
+
+            })
+            // win?loose, stay?switch
+            return [this.states[this.secondChoice]==1, this.firstChoice==this.secondChoice]
 
         }
+    }
+    
+}
+
+function resetScreen() {
+    OPTIONS.forEach(option => {
+       
+        for (let index = 0; index < option.children.length; index++) {
+            const child = option.children[index];
+            if(!child.classList.contains('hide')){
+                child.classList.add('hide')
+            }
+        }
+
+        option.querySelector('.door').classList.remove('hide')      
+    })
+}
+
+function newGame() {
+    resetScreen()
+    GAME = new MontyHall()
+
+    OPTIONS.forEach(option => {
+        option.addEventListener('click', choiceListener)
+    })
+}
+
+function choiceListener(auto) {
+
+    var container = this // grab the image container
+    var progress  = GAME.processChoice(container)
+    
+    if (progress){
+        OPTIONS.forEach(option => {
+            option.removeEventListener('click', choiceListener)
+        })
+        console.log('removed')
+        console.log(progress)
+
+        if (progress[1]){ // stay
+            RESULTS[0] += 1
+            RESULTS[1] += progress[0]
+        } else { //switch
+            RESULTS[2] += 1
+            RESULTS[3] += progress[0]
+        }
+        updateResults()
+
+    }
+
+}
+
+function simulateStay() {
+    resetScreen()
+    GAME = new MontyHall()
+    var choice = Math.floor(Math.random()*3)
+    GAME.processChoice(OPTIONS[choice])
+    var progress = GAME.processChoice(OPTIONS[choice])
+
+    RESULTS[0] += 1
+    RESULTS[1] += progress[0]
+    updateResults()
+}
+
+function simulateSwitch(){
+    resetScreen()
+    GAME = new MontyHall()
+    var choice = Math.floor(Math.random()*3)
+    GAME.processChoice(OPTIONS[choice])
+    var progress = GAME.processChoice(OPTIONS[GAME.choices[0]])
+    RESULTS[2] += 1
+    RESULTS[3] += progress[0]
+    updateResults()
+}
+
+document.getElementById('reset').addEventListener('click', newGame)
+document.getElementById('simulateStay').addEventListener('click', simulateStay)
+document.getElementById('simulateSwitch').addEventListener('click', simulateSwitch)
+
+var OPTIONS = [
+    document.getElementById('00'),
+    document.getElementById('01'),
+    document.getElementById('02')
+]
+var GAME = null;
+var RESULTS = [0, 0, 0, 0] // stay, win-stay, switch, win-switch,
+
+var OP1 = document.getElementById('Out1')
+var OP2 = document.getElementById('Out2')
+var OP3 = document.getElementById('Out3')
+
+function updateResults() {
+    OP1.innerHTML = String(RESULTS[1])+' \\ '+ String(RESULTS[0]);
+    OP2.innerHTML = String(RESULTS[3])+' \\ '+ String(RESULTS[2]);
+    OP3.innerHTML = String(RESULTS[0])+' \\ '+ String(RESULTS[2]);
+}
+
+newGame()
+
+
+// -------------------------- For discription -------------------------------
+var readmeText = document.getElementById('readme-text')
+var readme = document.getElementById('readme')
+var footer = document.getElementById('footer')
+
+readme.addEventListener('click', toggle)
+readmeText.addEventListener('click',toggle, false)
+function toggle(params) {
+    if (readmeText.classList.contains('hide')){
+        readmeText.classList.remove('hide')
+        readme.classList.add('hide')
+        footer.classList.add('hide')
+    } else{
+        readmeText.classList.add('hide')
+        readme.classList.remove('hide')
+        footer.classList.remove('hide')
     }
 }
 
 
 
+/*
 function select(auto) {
     var container = auto.path[1] // grab the image container
     
@@ -151,24 +291,4 @@ var op3 = document.getElementById('Out3')
 op1.innerHTML = stayPut;
 op2.innerHTML = switchOp;
 op3.innerHTML = String(count_stayPut)+' \\ '+ String(count_switchOp);
-
-
-
-// -------------------------- For discription -------------------------------
-var readmeText = document.getElementById('readme-text')
-var readme = document.getElementById('readme')
-var footer = document.getElementById('footer')
-
-readme.addEventListener('click', toggle)
-readmeText.addEventListener('click',toggle, false)
-function toggle(params) {
-    if (readmeText.classList.contains('hide')){
-        readmeText.classList.remove('hide')
-        readme.classList.add('hide')
-        footer.classList.add('hide')
-    }else{
-        readmeText.classList.add('hide')
-        readme.classList.remove('hide')
-        footer.classList.remove('hide')
-    }
-}
+*/
