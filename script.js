@@ -98,8 +98,6 @@ function choiceListener(auto) {
         OPTIONS.forEach(option => {
             option.removeEventListener('click', choiceListener)
         })
-        console.log('removed')
-        console.log(progress)
 
         if (progress[1]){ // stay
             RESULTS[0] += 1
@@ -151,12 +149,10 @@ var RESULTS = [0, 0, 0, 0] // stay, win-stay, switch, win-switch,
 
 var OP1 = document.getElementById('Out1')
 var OP2 = document.getElementById('Out2')
-var OP3 = document.getElementById('Out3')
 
 function updateResults() {
     OP1.innerHTML = String(RESULTS[1])+' \\ '+ String(RESULTS[0]);
     OP2.innerHTML = String(RESULTS[3])+' \\ '+ String(RESULTS[2]);
-    OP3.innerHTML = String(RESULTS[0])+' \\ '+ String(RESULTS[2]);
 }
 
 newGame()

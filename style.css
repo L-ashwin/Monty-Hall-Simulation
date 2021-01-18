@@ -3,87 +3,25 @@ body {
     color: #58a6ff;
 }
 
-@media screen and (orientation:portrait){
-    .row {
-        width: 100%;
-        margin: auto;
-        display: flex;
+.row {
+    margin: auto;
+    display: flex;
 
-    }
-    .main {
-        margin-top: 5vh;
-        margin-bottom: 5vh;
-    }
-
-    .h1{
-        text-align: center;
-        font-size:x-large;
-        font-family:'Courier New', Courier, monospace;
-        margin-bottom: 5vh;
-        margin-top: 5vh;
-    }
-    .row button {
-        height: 5vh;
-    }
 }
 
-@media screen and (orientation:landscape) { 
-    .row {
-        width: 40%;
-        margin: auto;
-        display: flex;
-        margin-bottom: 2vh;
-        margin-top: 2vh;
-    }
-
-    .h1{
-        text-align: center;
-        font-family:'Courier New', Courier, monospace;
-        margin-top: 2%;
-        margin-bottom: 5%;
-    }
-
-    .scores .column p{
-        text-align: center;
-        font-size: x-large;
-    }
-
-    .scores{
-        margin-top: 0px !important ;
-        margin-bottom: 0px !important ;
-    }
-
-    .row button {
-        height: 5vh;
-    }
- }
-  
 .column {
-    flex: 33.33%;
+    flex: Auto;
     position: relative;
     margin: 5px;
+}
+/*-------------------------------------------------------------------------------*/
+.main {
+    margin-top: 10vh;
+    margin-bottom: 6vh;
 }
 
 .image{
     width: 100%;
-}
-
-.row button {
-    appearance: none;
-    border: none; 
-    font-size: medium;
-    width: 25%;
-    margin: auto;
-    margin-bottom: 2vh;
-    margin-top: 2vh;
-    background-color: #21262d;
-    color: #f0f6fc;
-    font-size: larger;
-    border: 0px;
-}
-
-.row button:focus{
-    outline: 0;
 }
 
 .check{
@@ -95,15 +33,38 @@ body {
     display: None;
 }
 
-.scores .column p{
-    text-align: center;
+/*-------------------------------------------------------------------------------*/
 
+.row .column {
+    flex: 33.33%;
 }
 
+.row .column button {
+    margin: auto;
+    background-color: #21262d;
+    color: #f0f6fc;
+    height: 5vh;
+    width: 100%;
+    border: 0vh;
+}
 
-#readme-text{
-    color: #c9d1d9;
-    margin-top: 2vh;
+.row button:focus{
+    outline: 0;
+}
+
+/*-------------------------------------------------------------------------------*/
+
+.scores .column p{
+    text-align: center;
+}
+
+/*-------------------------------------------------------------------------------*/
+
+#footer {
+    position: absolute;
+    font-size: larger;
+    bottom: 10px;
+    right: 10px;
 }
 
 #readme{
@@ -114,11 +75,60 @@ body {
     color: #c9d1d9;
 }
 
-#footer {
-    position: absolute;
-    font-size: larger;
-    bottom: 10px;
-    right: 10px;
+#readme-text{
+    color: #c9d1d9;
+    margin-top: 2vh;
+    padding: 2vh;
 }
+
+/*-------------------------------------------------------------------------------*/
+
+@media screen and (orientation:portrait){
+    .row {
+        width: 100%;
+    }
+
+    .h1{
+        text-align: center;
+        font-size:x-large;
+        font-family:'Courier New', Courier, monospace;
+        margin-bottom: 5vh;
+        margin-top: 5vh;
+    }
+
+    .row .column button {
+        font-size: medium;
+        margin-top: 3vh;
+        margin-bottom: 5vh;
+    }
+
+}
+
+/*-------------------------------------------------------------------------------*/
+
+@media screen and (orientation:landscape) { 
+    .row {
+        width: 40%;
+    }
+
+    .h1{
+        text-align: center;
+        font-size:xx-large;
+        font-family:'Courier New', Courier, monospace;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+
+    .scores .column p{
+        font-size: x-large;
+    }
+
+    .row .column button {
+        font-size: larger;
+        margin-top: 3vh;
+        margin-bottom: 3vh;
+    }
+
+ }
 
   /*https://freesvg.org/*/
