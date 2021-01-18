@@ -92,14 +92,14 @@ body {
         text-align: center;
         font-size:x-large;
         font-family:'Courier New', Courier, monospace;
-        margin-bottom: 5vh;
-        margin-top: 5vh;
+        margin-bottom: 4vh;
+        margin-top: 4vh;
     }
 
     .row .column button {
         font-size: medium;
-        margin-top: 3vh;
-        margin-bottom: 5vh;
+        margin-top: 2vh;
+        margin-bottom: 3vh;
     }
 
 }
